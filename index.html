@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Card</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #69e2ff;
+      }
+      .input-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+      }
+      .card {
+        display: none;
+        width: 640px;
+        height: 400px;
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        -webkit-perspective: 1200px;
+        perspective: 1200px;
+        transition: 1s;
+      }
+      .card:hover {
+        transform: rotate(-5deg);
+      }
+      .card:hover .outside {
+        transform: rotateY(-130deg);
+      }
+      .outside,
+      .inside {
+        height: 100%;
+        width: 50%;
+        position: absolute;
+        left: 50.1%;
+      }
+      .inside {
+        background: linear-gradient(to right, #e7e7e7, #ffffff 30%);
+        line-height: 3;
+        padding: 0 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        left: 50%;
+      }
+      .outside {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        z-index: 1;
+        transform-origin: left;
+        transition: 2s;
+        cursor: pointer;
+      }
+      .front,
+      .back {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: rotateX(0deg);
+      }
+      .front {
+        background-color: #ffffff;
+      }
+      .back {
+        transform: rotateY(180deg);
+        background: linear-gradient(to left, #e7e7e7, #ffffff 30%);
+      }
+      .cake {
+        width: 100%;
+        position: absolute;
+        bottom: 30px;
+      }
+      .top-layer,
+      .middle-layer,
+      .bottom-layer {
+        height: 80px;
+        width: 240px;
+        background-repeat: repeat;
+        background-size: 60px 100px;
+        background-position: 28px 0;
+        background-image: linear-gradient(
+            transparent 50px,
+            #fedbab 50px,
+            #fedbab 60px,
+            transparent 60px
+          ),
+          radial-gradient(circle at 30px 5px, black 30px, #994c10 31px);
+        border-radius: 10px 10px 0 0;
+        position: relative;
+        margin: auto;
+      }
+      .middle-layer {
+        transform: scale(0.85);
+        top: 6px;
+      }
+      .top-layer {
+        transform: scale(0.7);
+        top: 26px;
+      }
+      .candle {
+        height: 45px;
+        width: 15px;
+        background: repeating-linear-gradient(
+          45deg,
+          #fd3018 0,
+          #fd3018 5px,
+          #ffa89e 5px,
+          #ffa89e 10px
+        );
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: 202px;
+      }
+      .candle:before {
+        content: "";
+        position: absolute;
+        height: 16px;
+        width: 16px;
+        background-color: #ffa500;
+        border-radius: 0 50% 50% 50%;
+        bottom: 48px;
+        transform: rotate(45deg);
+        left: -1px;
+      }
+      .outside p {
+        font-size: 23px;
+        text-transform: uppercase;
+        margin-top: 30px;
+        text-align: center;
+        letter-spacing: 6px;
+        color: #000046;
+      }
+      .inside p {
+        font-size: 10px;
+        line-height: 20px;
+      }
+      .input-container input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      .input-container button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #69e2ff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .input-container button:hover {
+        background-color: #007bff;
+        color: #fff;
+      }
+      .inside img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+    </style>
+  </head>
+  <body>
+    <!-- Input Page -->
+    <div class="input-page">
+      <h1>Enter the name uh would like me to call u</h1>
+      <div class="input-container">
+        <input type="text" id="friendName" placeholder="Name" />
+        <button onclick="generateCard()">Generate Birthday Card</button>
+      </div>
+    </div>
+
+    <!-- Birthday Card -->
+    <div class="card">
+      <div class="outside">
+        <div class="front">
+          <p id="birthdayMessage">Happy Birthday</p>
+          <div class="cake">
+            <div class="top-layer"></div>
+            <div class="middle-layer"></div>
+            <div class="bottom-layer"></div>
+            <div class="candle"></div>
+          </div>
+        </div>
+        <div class="back"></div>
+      </div>
+      <div class="inside">
+        <p> Today & every day,wishing only the best for u HAPPY BIRTHDAY......  
+        This day i wanna thank u 🥹😝for being gossip partner....i always waited😬 for this day because🫣i wanted to make u feel special🙈😍 & try to make u more happiest😻 and don't forget  i'll always be there to irritate u 😂
+        ur damn lucky to have me 😜 as a irritate friend.
+        </p>
+        <h1>
+            <img src="pic1.jpg" alt="Birthday Image" />
+          </h1>
+  
+
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      function generateCard() {
+        const nameInput = document.getElementById("friendName").value;
+        const birthdayMessage = document.getElementById("birthdayMessage");
+
+        if (nameInput.trim()) {
+          birthdayMessage.textContent = "Happy Birthday" + nameInput+"!";
+          document.querySelector(".input-page").style.display = "none";
+          document.querySelector(".card").style.display = "block";
+        } else {
+          alert("Please enter a name!");
+        }
+      }
+    </script>
+  </body>
+</html>
